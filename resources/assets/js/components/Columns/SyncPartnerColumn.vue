@@ -1,12 +1,12 @@
 <template>
-    <input-text field="last_name" :initialData="rowData.last_name"></input-text>
+    <input-text field="sync_partner" :initialData="rowData.sync_partner"></input-text>
 </template>
 
 <script>
     import DefaultProps from './DefaultProps'
 
   export default {
-    name: 'last-name-column',
+    name: 'sync-partner-column',
 
     mixins: [DefaultProps]
   }

@@ -6,7 +6,7 @@
     import DefaultProps from './DefaultProps'
 
   export default {
-    name: "first-name-column",
+    name: 'first-name-column',
 
     mixins: [DefaultProps]
   }
