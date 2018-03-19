@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import DefaultProps from './DefaultProps'
+  import DefaultProps from './DefaultProps'
 
   export default {
     name: 'usag-id-column',

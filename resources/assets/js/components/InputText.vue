@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" class="form-control" :name="field" v-model="temporaryData" v-show="editing" />
+        <input type="text" class="form-control" :name="field" v-model="temporaryData" v-show="editing"/>
         <button type="button" class="btn btn-default" @click="save" v-show="editing">✔️</button>
         <button type="button" class="btn btn-default" @click="cancel" v-show="editing">✖️</button>
         <span @click="toggleEditing" v-show="!editing">{{ changeableData }}</span>

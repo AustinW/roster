@@ -9,7 +9,6 @@
 
 <script>
   import Vuetable from 'vuetable-2';
-  import axios from 'axios';
 
   export default {
     name: "roster",
@@ -41,7 +40,7 @@
       }
     },
 
-    components: {Vuetable}
+    components: { Vuetable }
   }
 </script>
 

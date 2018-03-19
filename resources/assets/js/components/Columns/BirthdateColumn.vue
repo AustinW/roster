@@ -5,9 +5,9 @@
 </template>
 
 <script>
-    export default {
-        name: 'birthdate-column.vue'
-    };
+  export default {
+    name: 'birthdate-column.vue'
+  };
 </script>
 
 <style scoped>
