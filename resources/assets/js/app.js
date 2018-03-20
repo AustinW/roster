@@ -5,9 +5,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
+window.Vue = require('vue')
+Vue.config.productionTip = false
+
+import store from './store'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,6 +24,7 @@ Vue.component('input-select', require('./components/InputSelect.vue'));
 
 Vue.component('first-name-column', require('./components/Columns/FirstNameColumn.vue'));
 Vue.component('last-name-column', require('./components/Columns/LastNameColumn.vue'));
+Vue.component('usag-id-column', require('./components/Columns/UsagIdColumn.vue'));
 Vue.component('gender-column', require('./components/Columns/GenderColumn.vue'));
 Vue.component('birthdate-column', require('./components/Columns/BirthdateColumn.vue'));
 Vue.component('tra-level-column', require('./components/Columns/TraLevelColumn.vue'));
@@ -30,5 +34,7 @@ Vue.component('notes-column', require('./components/Columns/NotesColumn.vue'));
 Vue.component('sync-partner-column', require('./components/Columns/SyncPartnerColumn.vue'));
 
 const app = new Vue({
-    el: '#app'
+  el: '#app',
+
+  store
 });

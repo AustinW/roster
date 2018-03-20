@@ -4,14 +4,16 @@
                   api-url="/api/athletes"
                   :fields="fields"
         ></vuetable>
+        <a href="#" @click.prevent="reset">Reset</a>
     </div>
 </template>
 
 <script>
-  import Vuetable from 'vuetable-2';
+  import Vuetable from 'vuetable-2'
+  import axios from 'axios'
 
   export default {
-    name: "roster",
+    name: 'roster',
 
     data() {
       return {
@@ -39,6 +41,14 @@
         ]
       }
     },
+
+    async created () {
+      const roster = await axios.get('/api/athletes')
+      console.log(roster)
+      // this.$store.dispatch('loadRoster', )
+    },
+
+    methods: { reset() { this.$refs.vuetable.reload() }},
 
     components: { Vuetable }
   }

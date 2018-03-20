@@ -5,8 +5,12 @@
 </template>
 
 <script>
+  import DefaultProps from './DefaultProps'
+
   export default {
-    name: 'birthdate-column.vue'
+    name: 'birthdate-column',
+
+    mixins: [DefaultProps]
   };
 </script>
 
