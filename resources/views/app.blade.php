@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container" id='app'>
-    <roster></roster>
+    <app></app>
 </div>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

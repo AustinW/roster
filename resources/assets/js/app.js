@@ -18,6 +18,7 @@ import store from './store'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('app', require('./components/App.vue'));
 Vue.component('roster', require('./components/Roster.vue'));
 Vue.component('input-text', require('./components/InputText.vue'));
 Vue.component('input-select', require('./components/InputSelect.vue'));

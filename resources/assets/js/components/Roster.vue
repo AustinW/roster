@@ -1,54 +1,100 @@
 <template>
-    <div>
-        <vuetable ref="vuetable"
-                  api-url="/api/athletes"
-                  :fields="fields"
-        ></vuetable>
-        <a href="#" @click.prevent="reset">Reset</a>
-    </div>
+    <table v-if="roster">
+        <thead>
+            <tr>
+                <th v-for="key in columns"
+                    @click="sortBy(key)"
+                    :class="{ active: sortKey == key }">
+                    {{ key | capitalize }}
+                    <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="entry in filteredData">
+                <td v-for="key in columns">
+                    {{ entry[key] }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </template>
 
 <script>
   import Vuetable from 'vuetable-2'
   import axios from 'axios'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'roster',
 
-    data() {
-      return {
-        fields: [
-          {
-            name: 'active',
-            sortField: 'active',
-            title: 'Active',
-            callback: (value) => {
-              return (value === 1) ? 'Yes' : 'No'
-            },
-            __component: 'input-select'
-          },
-          { name: '__component:usag-id-column', sortField: 'usag_id', title: 'USAG #' },
-          { name: '__component:first-name-column', sortField: 'first_name', title: 'First Name' },
-          { name: '__component:last-name-column', sortField: 'last_name', title: 'Last Name' },
-          { name: '__component:gender-column', sortField: 'gender', title: 'Gender' },
-          { name: '__component:birthdate-column', sortField: 'birthdate', title: 'Birthday' },
-          { name: 'competitive_age', sortField: 'competitive_age', title: 'Age' },
-          { name: '__component:tra-level-column', sortField: 'tra_level', title: 'TRA' },
-          { name: '__component:dmt-level-column', sortField: 'dmt_level', title: 'DMT' },
-          { name: '__component:tum-level-column', sortField: 'tum_level', title: 'TUM' },
-          { name: '__component:notes-column', sortField: 'notes', title: 'Notes' },
-          { name: '__component:sync-partner-column', sortField: 'sync_partner', title: 'Sync Partner' },
-        ]
+    props: {
+      columns: Array,
+      filterKey: String
+    },
+
+    computed: {
+
+      ...mapGetters(['roster']),
+
+      filteredData() {
+        let sortKey = this.sortKey
+        let filterKey = this.filterKey && this.filterKey.toLowerCase()
+        let order = this.sortOrders[sortKey] || 1
+        let data = this.roster.data
+        console.log(data)
+
+        if (filterKey) {
+          data = data.filter((row) => {
+            return Object.keys(row).some((key) => {
+              return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+            })
+          })
+        }
+
+        if (sortKey) {
+          data = data.slice().sort((a, b) => {
+            a = a[sortKey]
+            b = b[sortKey]
+            return (a === b ? 0 : a > b ? 1 : -1) * order
+          })
+        }
+
+        return data
       }
     },
 
-    async created () {
-      const roster = await axios.get('/api/athletes')
-      console.log(roster)
-      // this.$store.dispatch('loadRoster', )
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
     },
 
-    methods: { reset() { this.$refs.vuetable.reload() }},
+    methods: {
+      sortBy(key) {
+        this.sortKey = key
+        this.sortOrders[key] = this.sortOrders[key] * -1
+      }
+    },
+
+    data() {
+      let sortOrders = {}
+
+      this.columns.forEach((key) => {
+        sortOrders[key] = 1
+      })
+
+      return {
+        sortKey: '',
+        sortOrders: sortOrders
+      }
+    },
+
+    mounted() {
+      this.$store.dispatch('loadRoster', { table: this.$refs.vuetable })
+    },
 
     components: { Vuetable }
   }

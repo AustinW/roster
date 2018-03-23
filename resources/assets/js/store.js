@@ -9,18 +9,22 @@ const store = new Vuex.Store({
   },
 
   getters: {
-
-  },
-
-  actions: {
-    loadRoster(context, payload) {
-      context.commit('hydrateRoster', payload)
+    roster(state) {
+      return state.roster
     }
   },
 
+  actions: {
+    async loadRoster(context, payload) {
+      const roster = await axios.get('/api/athletes?sort=&page=1&per_page=15')
+      console.log(roster)
+      context.commit('hydrateRoster', roster.data)
+    },
+  },
+
   mutations: {
-    hydrateRoster(state, rowData) {
-      state.roster = rowData
+    hydrateRoster(state, payload) {
+      state.roster = payload
     }
   }
 })
