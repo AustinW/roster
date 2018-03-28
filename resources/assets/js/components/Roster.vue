@@ -5,7 +5,7 @@
                 <th v-for="key in columns"
                     @click="sortBy(key)"
                     :class="{ active: sortKey == key }">
-                    {{ key | capitalize }}
+                    {{ key | title }}
                     <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
                 </th>
             </tr>
@@ -13,7 +13,9 @@
         <tbody>
             <tr v-for="entry in filteredData">
                 <td v-for="key in columns">
-                    {{ entry[key] }}
+                    <input-text v-if="['usag_id', 'first_name', 'last_name'].includes(key)" :initial-data="entry[key]" field="key"></input-text>
+                    <input-select v-else-if="['active', 'gender', 'tra_level', 'dmt_level', 'tum_level'].includes(key)" :initial-data="entry[key]" field="key"></input-select>
+                    <span v-else>{{ entry[key] }}</span>
                 </td>
             </tr>
         </tbody>
@@ -42,7 +44,6 @@
         let filterKey = this.filterKey && this.filterKey.toLowerCase()
         let order = this.sortOrders[sortKey] || 1
         let data = this.roster.data
-        console.log(data)
 
         if (filterKey) {
           data = data.filter((row) => {
@@ -65,10 +66,21 @@
     },
 
     filters: {
-      capitalize: function (value) {
-        if (!value) return ''
-        value = value.toString()
-        return value.charAt(0).toUpperCase() + value.slice(1)
+      title: function (value) {
+        const titles = {
+          active: 'Active',
+          usag_id: 'USAG #',
+          first_name: 'First',
+          last_name: 'Last',
+          gender: 'Gender',
+          birthdate: 'Birthdate',
+          age: 'Age',
+          tra_level: 'TRA',
+          dmt_level: 'DMT',
+          tum_level: 'TUM'
+        }
+
+        return titles[value]
       }
     },
 
