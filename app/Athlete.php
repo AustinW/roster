@@ -9,7 +9,7 @@ class Athlete extends Model
 {
     protected $guarded = ['id'];
 
-    protected $appends = ['age'];
+    protected $appends = ['competitive_age'];
 
     public function getCompetitiveAgeAttribute()
     {

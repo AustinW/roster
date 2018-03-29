@@ -21,7 +21,7 @@ class AthleteController extends Controller
         } else {
             $sort = ['id', 'asc'];
         }
-        return AthleteResource::collection(Athlete::orderBy($sort[0], $sort[1])->paginate());
+        return AthleteResource::collection(Athlete::orderBy($sort[0], $sort[1])->simplePaginate());
     }
 
     /**
@@ -76,7 +76,16 @@ class AthleteController extends Controller
      */
     public function update(Request $request, Athlete $athlete)
     {
-        //
+        $field = $request->get('field');
+
+        if ( ! $field) {
+            throw new \InvalidArgumentException('Invalid field specified');
+        }
+
+        $athlete->$field = $request->get('value');
+        $athlete->save();
+
+        return $athlete;
     }
 
     /**

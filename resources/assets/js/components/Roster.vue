@@ -1,7 +1,8 @@
 <template>
-    <table v-if="roster">
+    <table v-if="roster" class="table table-striped">
         <thead>
             <tr>
+                <th>#</th>
                 <th v-for="key in columns"
                     @click="sortBy(key)"
                     :class="{ active: sortKey == key }">
@@ -12,11 +13,7 @@
         </thead>
         <tbody>
             <tr v-for="entry in filteredData">
-                <td v-for="key in columns">
-                    <input-text v-if="['usag_id', 'first_name', 'last_name'].includes(key)" :initial-data="entry[key]" field="key"></input-text>
-                    <input-select v-else-if="['active', 'gender', 'tra_level', 'dmt_level', 'tum_level'].includes(key)" :initial-data="entry[key]" field="key"></input-select>
-                    <span v-else>{{ entry[key] }}</span>
-                </td>
+                <entry-row :entry="entry" :column="column" :key="column" v-for="column in columns" />
             </tr>
         </tbody>
     </table>
