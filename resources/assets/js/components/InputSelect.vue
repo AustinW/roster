@@ -5,7 +5,7 @@
         </select>
         <button type="button" class="btn btn-default" @click="save" v-show="editing">✔️</button>
         <button type="button" class="btn btn-default" @click="cancel" v-show="editing">✖️</button>
-        <span @click="toggleEditing" v-show="!editing">{{ changeableData }}</span>
+        <span @click="toggleEditing" v-show="!editing" v-if="changeableData">{{ display }}</span>
     </div>
 </template>
 
@@ -16,7 +16,19 @@
     name: 'input-select',
 
     props: {
-      options: null
+      options: {
+        type: Array,
+        required: true,
+        default: []
+      }
+    },
+
+    computed: {
+      display() {
+        const selected = this.options.filter((option) => option.key === String(this.changeableData))
+
+        return (selected.length) ? selected[0].value : ''
+      }
     },
 
     mixins: [BackendMixin]

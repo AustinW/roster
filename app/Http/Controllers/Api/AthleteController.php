@@ -21,7 +21,7 @@ class AthleteController extends Controller
         } else {
             $sort = ['id', 'asc'];
         }
-        return AthleteResource::collection(Athlete::orderBy($sort[0], $sort[1])->simplePaginate());
+        return AthleteResource::collection(Athlete::orderBy($sort[0], $sort[1])->paginate(1000));
     }
 
     /**

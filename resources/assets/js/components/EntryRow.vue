@@ -24,7 +24,13 @@
 
     methods: {
       fieldOptions(key) {
-        return this.$store.getters.fieldOptions[key]
+        let options = this.$store.getters.fieldOptions
+
+        if (key === 'tra_level' || key === 'dmt_level' || key === 'tum_level') {
+          return options['level']
+        } else {
+          return options[key]
+        }
       }
     }
   }

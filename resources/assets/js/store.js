@@ -11,8 +11,8 @@ const store = new Vuex.Store({
 
     fieldOptions: {
       active: [
-        { key: 0, value: 'No' },
-        { key: 1, value: 'Yes' }
+        { key: '0', value: 'No' },
+        { key: '1', value: 'Yes' }
       ],
       gender: [
         { key: 'F', value: 'F' },
@@ -29,8 +29,8 @@ const store = new Vuex.Store({
         { key: '8', value: 'Level 8' },
         { key: '9', value: 'Level 9' },
         { key: '10', value: 'Level 10' },
-        { key: 'ye-11-12', value: 'Youth Elite 11-12' },
-        { key: 'ye-13-14', value: 'Youth Elite 13-14' },
+        { key: 'ye-11-12', value: 'YE 11-12' },
+        { key: 'ye-13-14', value: 'YE 13-14' },
         { key: 'jr', value: 'Junior Elite' },
         { key: 'sr', value: 'Senior Elite' }
       ]

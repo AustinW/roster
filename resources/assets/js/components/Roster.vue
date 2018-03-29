@@ -12,7 +12,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="entry in filteredData">
+            <tr v-for="(entry, $index) in filteredData">
+                <td>{{ $index + 1 }}</td>
                 <entry-row :entry="entry" :column="column" :key="column" v-for="column in columns" />
             </tr>
         </tbody>
@@ -21,7 +22,6 @@
 
 <script>
   import Vuetable from 'vuetable-2'
-  import axios from 'axios'
   import { mapGetters } from 'vuex'
 
   export default {
