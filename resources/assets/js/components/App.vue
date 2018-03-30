@@ -15,6 +15,7 @@
           'last_name',
           'gender',
           'birthdate',
+          'age',
           'tra_level',
           'dmt_level',
           'tum_level'

@@ -2,6 +2,7 @@
     <table v-if="roster" class="table table-striped">
         <thead>
             <tr>
+                <th><label><input type="checkbox" v-model="checkAll"/></label></th>
                 <th>#</th>
                 <th v-for="key in columns"
                     @click="sortBy(key)"
@@ -12,10 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(entry, $index) in filteredData">
-                <td>{{ $index + 1 }}</td>
-                <entry-row :entry="entry" :column="column" :key="column" v-for="column in columns" />
-            </tr>
+            <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id" v-for="(entry, $index) in filteredData"></athlete>
         </tbody>
     </table>
 </template>
@@ -35,6 +33,16 @@
     computed: {
 
       ...mapGetters(['roster']),
+
+      checkAll: {
+        get() {
+          return this.$store.state.checkAll
+        },
+
+        set(value) {
+          this.$store.dispatch('checkAll', value)
+        }
+      },
 
       filteredData() {
         let sortKey = this.sortKey

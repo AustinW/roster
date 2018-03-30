@@ -22,7 +22,8 @@ Vue.component('app', require('./components/App.vue'));
 Vue.component('roster', require('./components/Roster.vue'));
 Vue.component('input-text', require('./components/InputText.vue'));
 Vue.component('input-select', require('./components/InputSelect.vue'));
-Vue.component('entry-row', require('./components/EntryRow.vue'));
+Vue.component('column', require('./components/Column.vue'));
+Vue.component('athlete', require('./components/Athlete.vue'));
 
 Vue.component('first-name-column', require('./components/Columns/FirstNameColumn.vue'));
 Vue.component('last-name-column', require('./components/Columns/LastNameColumn.vue'));

@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: "entry-row",
+    name: "column",
 
     props: {
       entry: null,

@@ -9,6 +9,8 @@ const store = new Vuex.Store({
   state: {
     roster: null,
 
+    checkAll: true,
+
     fieldOptions: {
       active: [
         { key: '0', value: 'No' },
@@ -44,6 +46,12 @@ const store = new Vuex.Store({
 
     fieldOptions(state) {
       return state.fieldOptions
+    },
+
+    athleteChecked(state) {
+      return (athleteId) => {
+        return state.roster.data.find((athlete) => athlete.id === athleteId).checked
+      }
     }
   },
 
@@ -58,11 +66,21 @@ const store = new Vuex.Store({
       const save = await axios.put('/api/athletes/' + payload.id, payload)
       context.commit('updateAthlete', payload)
       return save
+    },
+
+    checkAll(context, payload) {
+      context.commit('checkAll', payload)
+      context.commit('checkAllBoxes', payload)
     }
   },
 
   mutations: {
     hydrateRoster(state, payload) {
+      payload.data = payload.data.map((athlete) => {
+        athlete.checked = state.checkAll
+        return athlete
+      })
+
       state.roster = payload
     },
 
@@ -72,6 +90,27 @@ const store = new Vuex.Store({
           athlete[payload.field] = payload.value
         }
 
+        return athlete
+      })
+    },
+
+    checkAthlete(state, { athleteId, checked }) {
+      state.roster.data = state.roster.data.map((athlete) => {
+        if (athlete.id === athleteId) {
+          athlete.checked = checked
+        }
+
+        return athlete
+      })
+    },
+
+    checkAll(state, payload) {
+      state.checkAll = payload
+    },
+
+    checkAllBoxes(state, payload) {
+      state.roster.data = state.roster.data.map((athlete) => {
+        athlete.checked = payload
         return athlete
       })
     }
