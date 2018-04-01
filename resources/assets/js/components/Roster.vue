@@ -1,6 +1,7 @@
 <template>
-    <table v-if="roster" class="table table-striped">
-        <thead>
+    <div>
+        <table v-if="roster" class="table table-striped">
+            <thead>
             <tr>
                 <th><label><input type="checkbox" v-model="checkAll"/></label></th>
                 <th>#</th>
@@ -11,11 +12,16 @@
                     <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
                 </th>
             </tr>
-        </thead>
-        <tbody>
-            <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id" v-for="(entry, $index) in filteredData"></athlete>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
+                     v-for="(entry, $index) in filteredData"></athlete>
+            </tbody>
+        </table>
+
+        <registration-autofill></registration-autofill>
+        <level-autofill></level-autofill>
+    </div>
 </template>
 
 <script>

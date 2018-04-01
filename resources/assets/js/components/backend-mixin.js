@@ -13,7 +13,7 @@ const BackendMixin = {
     id: null
   },
 
-  mounted() {
+  created() {
     this.temporaryData = this.initialData
     this.changeableData = this.initialData
   },

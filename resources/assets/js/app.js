@@ -18,26 +18,33 @@ import store from './store'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('app', require('./components/App.vue'));
-Vue.component('roster', require('./components/Roster.vue'));
-Vue.component('input-text', require('./components/InputText.vue'));
-Vue.component('input-select', require('./components/InputSelect.vue'));
-Vue.component('column', require('./components/Column.vue'));
-Vue.component('athlete', require('./components/Athlete.vue'));
+import flatPickr from 'vue-flatpickr-component'
+Vue.use(flatPickr)
 
-Vue.component('first-name-column', require('./components/Columns/FirstNameColumn.vue'));
-Vue.component('last-name-column', require('./components/Columns/LastNameColumn.vue'));
-Vue.component('usag-id-column', require('./components/Columns/UsagIdColumn.vue'));
-Vue.component('gender-column', require('./components/Columns/GenderColumn.vue'));
-Vue.component('birthdate-column', require('./components/Columns/BirthdateColumn.vue'));
-Vue.component('tra-level-column', require('./components/Columns/TraLevelColumn.vue'));
-Vue.component('dmt-level-column', require('./components/Columns/DmtLevelColumn.vue'));
-Vue.component('tum-level-column', require('./components/Columns/TumLevelColumn.vue'));
-Vue.component('notes-column', require('./components/Columns/NotesColumn.vue'));
-Vue.component('sync-partner-column', require('./components/Columns/SyncPartnerColumn.vue'));
+Vue.component('app', require('./components/App.vue'))
+Vue.component('roster', require('./components/Roster.vue'))
+Vue.component('input-text', require('./components/InputText.vue'))
+Vue.component('input-select', require('./components/InputSelect.vue'))
+Vue.component('input-date', require('./components/InputDate.vue'))
+Vue.component('column', require('./components/Column.vue'))
+Vue.component('athlete', require('./components/Athlete.vue'))
+
+Vue.component('registration-autofill', require('./components/RegistrationAutofill.vue'))
+Vue.component('level-autofill', require('./components/LevelAutofill.vue'))
+
+Vue.component('first-name-column', require('./components/Columns/FirstNameColumn.vue'))
+Vue.component('last-name-column', require('./components/Columns/LastNameColumn.vue'))
+Vue.component('usag-id-column', require('./components/Columns/UsagIdColumn.vue'))
+Vue.component('gender-column', require('./components/Columns/GenderColumn.vue'))
+Vue.component('birthdate-column', require('./components/Columns/BirthdateColumn.vue'))
+Vue.component('tra-level-column', require('./components/Columns/TraLevelColumn.vue'))
+Vue.component('dmt-level-column', require('./components/Columns/DmtLevelColumn.vue'))
+Vue.component('tum-level-column', require('./components/Columns/TumLevelColumn.vue'))
+Vue.component('notes-column', require('./components/Columns/NotesColumn.vue'))
+Vue.component('sync-partner-column', require('./components/Columns/SyncPartnerColumn.vue'))
 
 const app = new Vue({
   el: '#app',
 
   store
-});
+})

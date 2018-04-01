@@ -40,6 +40,10 @@ const store = new Vuex.Store({
   },
 
   getters: {
+    rosterLoaded(state) {
+      return state.roster && state.roster.hasOwnProperty('data');
+    },
+
     roster(state) {
       return state.roster
     },
@@ -52,6 +56,12 @@ const store = new Vuex.Store({
       return (athleteId) => {
         return state.roster.data.find((athlete) => athlete.id === athleteId).checked
       }
+    },
+
+    checkedAthletes(state) {
+      return state.roster.data.filter((athlete) => {
+        return athlete.checked
+      })
     }
   },
 
