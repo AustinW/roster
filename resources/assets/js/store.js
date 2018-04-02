@@ -21,6 +21,7 @@ const store = new Vuex.Store({
         { key: 'M', value: 'M' }
       ],
       level: [
+        { key: null, value: 'X' },
         { key: '1', value: 'Level 1' },
         { key: '2', value: 'Level 2' },
         { key: '3', value: 'Level 3' },
