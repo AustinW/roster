@@ -52,7 +52,9 @@
           'senior_elite': "100",
         }
 
-        if (levels.hasOwnProperty())
+        if (levels.hasOwnProperty(level)) {
+          return levels[level]
+        }
       }
     }
   }
