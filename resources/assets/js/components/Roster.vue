@@ -16,7 +16,7 @@
             <tbody>
                 <filter-bar></filter-bar>
                 <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
-                         v-for="(entry, $index) in filteredData"></athlete>
+                         v-for="(entry, $index) in rowData"></athlete>
             </tbody>
         </table>
 
@@ -51,19 +51,10 @@
         }
       },
 
-      filteredData() {
+      rowData() {
         let sortKey = this.sortKey
-        let filterKey = this.filterKey && this.filterKey.toLowerCase()
         let order = this.sortOrders[sortKey] || 1
-        let data = this.roster.data
-
-        if (filterKey) {
-          data = data.filter((row) => {
-            return Object.keys(row).some((key) => {
-              return String(row[key]).toLowerCase().indexOf(filterKey) > -1
-            })
-          })
-        }
+        let data = this.$store.getters.filteredData
 
         if (sortKey) {
           data = data.slice().sort((a, b) => {

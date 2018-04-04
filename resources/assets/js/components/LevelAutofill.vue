@@ -74,11 +74,7 @@
         }
 
         if (levels.hasOwnProperty(level)) {
-          let test = (typeof levels[level] !== 'function') ? levels[level] : levels[level]()
-          console.log(test);
-          return test
-        } else {
-          console.log(level, age);
+          return (typeof levels[level] !== 'function') ? levels[level] : levels[level]()
         }
       }
     }

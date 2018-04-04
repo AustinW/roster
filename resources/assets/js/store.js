@@ -11,6 +11,8 @@ const store = new Vuex.Store({
 
     checkAll: true,
 
+    filters: {},
+
     fieldOptions: {
       active: [
         { key: '0', value: 'No' },
@@ -63,6 +65,18 @@ const store = new Vuex.Store({
       return state.roster.data.filter((athlete) => {
         return athlete.checked
       })
+    },
+
+    filteredData(state) {
+      let filteredData = state.roster.data
+
+      for (let key in state.filters) {
+        if (state.filters.hasOwnProperty(key)) {
+          filteredData = state.filters[key](filteredData)
+        }
+      }
+
+      return filteredData
     }
   },
 
@@ -82,6 +96,14 @@ const store = new Vuex.Store({
     checkAll(context, payload) {
       context.commit('checkAll', payload)
       context.commit('checkAllBoxes', payload)
+    },
+
+    removeFilter(context, key) {
+      context.commit('setFilter', { key })
+    },
+
+    addFilter(context, payload) {
+      context.commit('setFilter', payload)
     }
   },
 
@@ -124,6 +146,14 @@ const store = new Vuex.Store({
         athlete.checked = payload
         return athlete
       })
+    },
+
+    setFilter(state, { key, reducer }) {
+      if ( ! reducer) {
+        Vue.delete(state.filters, key)
+      } else {
+        Vue.set(state.filters, key, reducer)
+      }
     }
   }
 })
