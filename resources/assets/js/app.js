@@ -29,6 +29,9 @@ Vue.component('input-date', require('./components/InputDate.vue'))
 Vue.component('column', require('./components/Column.vue'))
 Vue.component('athlete', require('./components/Athlete.vue'))
 
+Vue.component('filter-bar', require('./components/Filters/FilterBar.vue'))
+Vue.component('filter-active', require('./components/Filters/FilterActive.vue'))
+
 Vue.component('registration-autofill', require('./components/RegistrationAutofill.vue'))
 Vue.component('level-autofill', require('./components/LevelAutofill.vue'))
 

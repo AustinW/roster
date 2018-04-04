@@ -2,20 +2,21 @@
     <div>
         <table v-if="roster" class="table table-striped">
             <thead>
-            <tr>
-                <th><label><input type="checkbox" v-model="checkAll"/></label></th>
-                <th>#</th>
-                <th v-for="key in columns"
-                    @click="sortBy(key)"
-                    :class="{ active: sortKey == key }">
-                    {{ key | title }}
-                    <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
-                </th>
-            </tr>
+                <tr>
+                    <th><label><input type="checkbox" v-model="checkAll"/></label></th>
+                    <th>#</th>
+                    <th v-for="key in columns"
+                        @click="sortBy(key)"
+                        :class="{ active: sortKey == key }">
+                        {{ key | title }}
+                        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
-                     v-for="(entry, $index) in filteredData"></athlete>
+                <filter-bar></filter-bar>
+                <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
+                         v-for="(entry, $index) in filteredData"></athlete>
             </tbody>
         </table>
 
@@ -124,5 +125,21 @@
 </script>
 
 <style scoped>
+    #app {
+        margin: 10px;
+    }
 
+    .datatable {
+        width: 100%
+    }
+
+    .column-controls {
+        cursor: pointer;
+        float: right;
+        margin-top: 4px;
+    }
+
+    .column-controls .fa-sort {
+        opacity: 0.4;
+    }
 </style>

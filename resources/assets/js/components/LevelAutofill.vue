@@ -1,11 +1,7 @@
 <template>
     <pre>
         <code v-if="rosterLoaded">
-            var athleteIds = {{ athleteIds }};
-            $('#participantsWomen tr, #participantsMen tr').each((index, athlete) => {
-                let included = athleteIds.includes($(athlete).find('td:nth-child(4)').text())
-                $(athlete).find('td:nth-child(1) input').prop('checked', included);
-            });
+            {{ instructions.join(';') }}
         </code>
     </pre>
 </template>
@@ -23,37 +19,66 @@
     computed: {
       ...mapGetters(['rosterLoaded']),
 
-      athletes() {
+      instructions() {
         let instructions = [];
-        this.$store.getters.checkedAthletes.each((athlete) => {
+
+        this.$store.getters.checkedAthletes.forEach((athlete) => {
           if (athlete.tra_level) {
-            instructions.push(`$('select[name="Apparatus[${athlete.usag_id}][${TRA}]"]\').val(${this.levelMap(athlete.tra_level)})`)
+            let tra_mapped = this.levelMap(athlete.tra_level, athlete.competitive_age)
+            let dmt_mapped = this.levelMap(athlete.dmt_level, athlete.competitive_age)
+            let tum_mapped = this.levelMap(athlete.tum_level, athlete.competitive_age)
+
+            if (tra_mapped) instructions.push(`$('select[name="Apparatus[${athlete.usag_id}][${TRA}]"]\').val(${tra_mapped})`)
+            if (dmt_mapped) instructions.push(`$('select[name="Apparatus[${athlete.usag_id}][${DMT}]"]\').val(${dmt_mapped})`)
+            if (tum_mapped) instructions.push(`$('select[name="Apparatus[${athlete.usag_id}][${TUM}]"]\').val(${tum_mapped})`)
           }
         })
+
+        return instructions
       },
 
-      levelMap(level) {
+      athleteIds() {
+        return JSON.stringify(this.$store.getters.checkedAthletes.map((athlete) => {
+          return String(athlete.usag_id)
+        }))
+      }
+    },
+
+    methods: {
+
+      levelMap(level, age) {
         const levels = {
           '': '',
-          'level_1': '73',
-          'level_2': "74",
-          'level_3': "75",
-          'level_4': "76",
-          'level_5': "77",
-          'level_6': "78",
-          'level_7': "79",
-          'level_8': "80",
-          'level_9': "81",
-          'level_10': "82",
-          'youth_11_12': "134",
-          'youth_13_14': "131",
-          'junior_elite': "99",
-          'open_elite': "101",
-          'senior_elite': "100",
+          '1': '73',
+          '2': "74",
+          '3': "75",
+          '4': "76",
+          '5': "77",
+          '6': "78",
+          '7': "79",
+          '8': "80",
+          '9': "81",
+          '10': "82",
+          'YE': () => {
+            if (age >= 11 && age <= 12) {
+              return '134'
+            } else if (age >= 13 && age <= 14) {
+              return '131'
+            }
+          },
+          'youth-11-12': "134",
+          'youth-13-14': "131",
+          'JR': "99",
+          'OE': "101",
+          'SR': "100",
         }
 
         if (levels.hasOwnProperty(level)) {
-          return levels[level]
+          let test = (typeof levels[level] !== 'function') ? levels[level] : levels[level]()
+          console.log(test);
+          return test
+        } else {
+          console.log(level, age);
         }
       }
     }
