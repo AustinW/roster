@@ -1,18 +1,18 @@
 <template>
     <td>
-        <select v-model="activeFilter" class="form-control" v-on:change="addFilter">
+        <select v-model="genderFilter" class="form-control" v-on:change="addFilter">
             <option value="">All</option>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
+            <option value="f">Female</option>
+            <option value="m">Male</option>
         </select>
     </td>
 </template>
 
 <script>
-  const KEY = 'active'
+  const KEY = 'gender'
 
   export default {
-    name: 'filter-active',
+    name: 'filter-gender',
 
     props: {
       initialFilter: {
@@ -23,28 +23,27 @@
     },
 
     created() {
-      this.activeFilter = this.initialFilter
+      this.genderFilter = this.initialFilter
     },
 
     data() {
       return {
-        activeFilter: null
+        genderFilter: null
       }
     },
 
     methods: {
       addFilter() {
-        if (this.activeFilter) {
+        if (this.genderFilter) {
           this.$store.dispatch('addFilter', {
             key: KEY,
             reducer: (athlete) => {
-              return parseInt(athlete.active) === parseInt(this.activeFilter)
+              return athlete.gender.toLowerCase() === this.genderFilter
             }
           })
         } else {
           this.$store.dispatch('removeFilter', KEY)
         }
-
       }
     }
   }

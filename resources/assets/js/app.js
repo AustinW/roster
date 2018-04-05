@@ -31,6 +31,10 @@ Vue.component('athlete', require('./components/Athlete.vue'))
 
 Vue.component('filter-bar', require('./components/Filters/FilterBar.vue'))
 Vue.component('filter-active', require('./components/Filters/FilterActive.vue'))
+Vue.component('filter-first-name', require('./components/Filters/FilterFirstName.vue'))
+Vue.component('filter-last-name', require('./components/Filters/FilterLastName.vue'))
+Vue.component('filter-age', require('./components/Filters/FilterAge.vue'))
+Vue.component('filter-gender', require('./components/Filters/FilterGender.vue'))
 
 Vue.component('registration-autofill', require('./components/RegistrationAutofill.vue'))
 Vue.component('level-autofill', require('./components/LevelAutofill.vue'))

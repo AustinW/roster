@@ -22,7 +22,7 @@
       instructions() {
         let instructions = [];
 
-        this.$store.getters.checkedAthletes.forEach((athlete) => {
+        this.$store.getters.selectedAthletes.forEach((athlete) => {
           if (athlete.tra_level) {
             let tra_mapped = this.levelMap(athlete.tra_level, athlete.competitive_age)
             let dmt_mapped = this.levelMap(athlete.dmt_level, athlete.competitive_age)
@@ -38,7 +38,7 @@
       },
 
       athleteIds() {
-        return JSON.stringify(this.$store.getters.checkedAthletes.map((athlete) => {
+        return JSON.stringify(this.$store.getters.selectedAthletes.map((athlete) => {
           return String(athlete.usag_id)
         }))
       }

@@ -61,22 +61,22 @@ const store = new Vuex.Store({
       }
     },
 
-    checkedAthletes(state) {
+    selectedAthletes(state) {
       return state.roster.data.filter((athlete) => {
-        return athlete.checked
+        return athlete.checked && athlete.visible
       })
     },
 
     filteredData(state) {
-      let filteredData = state.roster.data
+      let allFilters = _.values(state.filters)
 
-      for (let key in state.filters) {
-        if (state.filters.hasOwnProperty(key)) {
-          filteredData = state.filters[key](filteredData)
-        }
-      }
+      return state.roster.data.map((athlete) => {
+        athlete.visible = allFilters.every((filter) => {
+          return filter(athlete)
+        })
 
-      return filteredData
+        return athlete
+      })
     }
   },
 
@@ -111,6 +111,7 @@ const store = new Vuex.Store({
     hydrateRoster(state, payload) {
       payload.data = payload.data.map((athlete) => {
         athlete.checked = state.checkAll
+        athlete.visible = true
         return athlete
       })
 
@@ -143,7 +144,9 @@ const store = new Vuex.Store({
 
     checkAllBoxes(state, payload) {
       state.roster.data = state.roster.data.map((athlete) => {
-        athlete.checked = payload
+        if (athlete.visible) {
+          athlete.checked = payload
+        }
         return athlete
       })
     },

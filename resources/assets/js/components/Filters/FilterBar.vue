@@ -4,11 +4,11 @@
         <td></td>
         <filter-active></filter-active>
         <td></td>
+        <filter-first-name></filter-first-name>
+        <filter-last-name></filter-last-name>
+        <filter-gender></filter-gender>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <filter-age></filter-age>
         <td></td>
         <td></td>
         <td></td>

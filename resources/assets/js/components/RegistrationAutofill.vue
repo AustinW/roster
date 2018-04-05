@@ -20,7 +20,7 @@
       ...mapGetters(['rosterLoaded']),
 
       athleteIds() {
-        return JSON.stringify(this.$store.getters.checkedAthletes.map((athlete) => {
+        return JSON.stringify(this.$store.getters.selectedAthletes.map((athlete) => {
           return String(athlete.usag_id)
         }))
       }

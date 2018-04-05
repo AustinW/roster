@@ -16,12 +16,12 @@
             <tbody>
                 <filter-bar></filter-bar>
                 <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
-                         v-for="(entry, $index) in rowData"></athlete>
+                         v-for="(entry, $index) in rowData" v-show="entry.visible" v-if="entry"></athlete>
             </tbody>
         </table>
 
-        <registration-autofill></registration-autofill>
-        <level-autofill></level-autofill>
+        <!--<registration-autofill></registration-autofill>-->
+        <!--<level-autofill></level-autofill>-->
     </div>
 </template>
 

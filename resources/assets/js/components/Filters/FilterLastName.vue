@@ -1,18 +1,14 @@
 <template>
     <td>
-        <select v-model="activeFilter" class="form-control" v-on:change="addFilter">
-            <option value="">All</option>
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-        </select>
+        <input v-model="lastNameFilter" class="form-control" type="text" v-on:keyup="addFilter">
     </td>
 </template>
 
 <script>
-  const KEY = 'active'
+  const KEY = 'last-name'
 
   export default {
-    name: 'filter-active',
+    name: 'filter-last-name',
 
     props: {
       initialFilter: {
@@ -23,22 +19,22 @@
     },
 
     created() {
-      this.activeFilter = this.initialFilter
+      this.lastNameFilter = this.initialFilter
     },
 
     data() {
       return {
-        activeFilter: null
+        lastNameFilter: null
       }
     },
 
     methods: {
       addFilter() {
-        if (this.activeFilter) {
+        if (this.lastNameFilter) {
           this.$store.dispatch('addFilter', {
             key: KEY,
             reducer: (athlete) => {
-              return parseInt(athlete.active) === parseInt(this.activeFilter)
+              return athlete.last_name.toLowerCase().includes(this.lastNameFilter.toLowerCase())
             }
           })
         } else {
@@ -51,5 +47,5 @@
 </script>
 
 <style scoped>
-
+    input { width: 150px }
 </style>
