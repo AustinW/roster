@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "hsy-vue-dropdown": "^0.0.5",
         "moment": "^2.22.0",
         "vue-flatpickr-component": "^7.0.0",
         "vuetable-2": "^1.7.5",

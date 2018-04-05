@@ -3324,6 +3324,10 @@ hpack.js@^2.1.6:
     readable-stream "^2.0.1"
     wbuf "^1.1.0"
 
+hsy-vue-dropdown@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/hsy-vue-dropdown/-/hsy-vue-dropdown-0.0.5.tgz#bf3183d5a1ff737f37083e816951628b05bf9f37"
+
 html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
