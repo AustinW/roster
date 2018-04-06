@@ -2,7 +2,7 @@
     <td>
         <input-text v-if="this.textFields.includes(column)" :initial-data="entry[column]" :field="column" :id="entry.id" />
         <input-select v-else-if="this.selectFields.includes(column)" :initial-data="entry[column]" :field="column" :options="fieldOptions(column)" :id="entry.id" />
-        <input-date v-else-if="this.dateFields.includes(column)" :initial-data="entry[column]" :field="column" id="entry.id" />
+        <input-date v-else-if="this.dateFields.includes(column)" :initial-data="entry[column]" :field="column" :id="entry.id" />
 
         <span v-else>{{ fieldModifier(column) }}</span>
     </td>

@@ -10,7 +10,7 @@
         />
         <button type="button" class="btn btn-default" @click="save" v-show="editing">✔</button>
         <button type="button" class="btn btn-default" @click="cancel" v-show="editing">✖</button>
-        <span @click="toggleEditing" v-show="!editing">{{ changeableData | dateFormat }}</span>
+        <span @click="toggleEditing" v-show="!editing">{{ formattedDate }}</span>
     </div>
 </template>
 
@@ -19,6 +19,7 @@
   import 'flatpickr/dist/flatpickr.css'
   import moment from 'moment'
   import BackendMixin from './backend-mixin'
+  import Vue from 'vue'
 
   export default {
     name: 'input-date',
@@ -29,13 +30,13 @@
       }
     },
 
-    filters: {
-      dateFormat(value) {
-        if (value) {
-          const momentDate = moment(value).format('M/D/YY')
+    computed: {
+      formattedDate() {
+        if (this.changeableData) {
+          const momentDate = moment(this.changeableData).format('M/D/YY')
           return (momentDate) ? momentDate : ''
         } else {
-          return value
+          return this.changeableData
         }
       }
     },
@@ -48,16 +49,17 @@
       this.flatPickrConfig = {
         dateFormat: 'm/d/Y',
         allowInput: true,
-        onClose: function (selectedDates, dateStr, instance) {
+        onClose(selectedDates, dateStr, instance) {
           let momentDate = moment(dateStr, ['MM/DD/YY', 'M/D/YYYY', 'M/D/YY', 'MM-DD-YY', 'M-D-YYYY', 'M-D-YY'])
-          if (!momentDate.isValid()) {
-            instance.clear()
-          } else {
+          if (momentDate.isValid()) {
             instance.setDate(momentDate.format('MM/DD/YYYY'), true)
-            self.value = self.internalDate
+            Vue.set(this, 'changeableData', momentDate.format('YYYY-MM-DD HH:mm:ss'))
+          } else {
+            console.log('asdf')
+            instance.clear()
           }
         },
-        disable: [date => self.allowFuture ? false : date > moment()]
+        disable: [date => date > moment()]
       };
     },
 
