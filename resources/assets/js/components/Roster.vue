@@ -26,9 +26,7 @@
         <!--<registration-autofill></registration-autofill>-->
         <!--<level-autofill></level-autofill>-->
 
-        <b-modal id="addAthlete" title="Add Athlete">
-            <p>hullo</p>
-        </b-modal>
+        <add-athlete-modal></add-athlete-modal>
     </div>
 </template>
 

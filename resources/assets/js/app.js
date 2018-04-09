@@ -56,6 +56,10 @@ Vue.component('tum-level-column', require('./components/Columns/TumLevelColumn.v
 Vue.component('notes-column', require('./components/Columns/NotesColumn.vue'))
 Vue.component('sync-partner-column', require('./components/Columns/SyncPartnerColumn.vue'))
 
+Vue.component('add-athlete-modal', require('./components/Modals/AddAthleteModal.vue'))
+Vue.component('add-athlete-form', require('./components/Forms/AddAthleteForm.vue'))
+
+
 const app = new Vue({
   el: '#app',
 
