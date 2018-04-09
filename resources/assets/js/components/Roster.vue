@@ -1,5 +1,8 @@
 <template>
     <div>
+        <b-btn v-b-modal.addAthlete>Add Athlete</b-btn>
+        <a href="#" @click.prevent="importAthletes">Import Athletes</a>
+        <a href="#" @click.prevent="deleteAthletes">Delete Athletes</a>
         <table v-if="roster" class="table table-striped">
             <thead>
                 <tr>
@@ -22,6 +25,10 @@
 
         <!--<registration-autofill></registration-autofill>-->
         <!--<level-autofill></level-autofill>-->
+
+        <b-modal id="addAthlete" title="Add Athlete">
+            <p>hullo</p>
+        </b-modal>
     </div>
 </template>
 

@@ -24,6 +24,9 @@ Vue.use(flatPickr)
 import Dropdown from 'hsy-vue-dropdown'
 Vue.use(Dropdown)
 
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
 Vue.component('app', require('./components/App.vue'))
 Vue.component('roster', require('./components/Roster.vue'))
 Vue.component('input-text', require('./components/InputText.vue'))
