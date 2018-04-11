@@ -49,15 +49,19 @@
       this.flatPickrConfig = {
         dateFormat: 'm/d/Y',
         allowInput: true,
-        onClose(selectedDates, dateStr, instance) {
+        onChange(selectedDate, dateStr, instance) {
           let momentDate = moment(dateStr, ['MM/DD/YY', 'M/D/YYYY', 'M/D/YY', 'MM-DD-YY', 'M-D-YYYY', 'M-D-YY'])
           if (momentDate.isValid()) {
             instance.setDate(momentDate.format('MM/DD/YYYY'), true)
             Vue.set(this, 'changeableData', momentDate.format('YYYY-MM-DD HH:mm:ss'))
+            console.log(momentDate.format('YYYY-MM-DD HH:mm:ss'))
           } else {
             console.log('asdf')
             instance.clear()
           }
+        },
+        onClose(selectedDate, dateStr, instance) {
+
         },
         disable: [date => date > moment()]
       };

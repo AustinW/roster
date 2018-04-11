@@ -1,27 +1,35 @@
 <template>
     <div>
-        <table v-if="roster" class="table table-striped">
-            <thead>
-                <tr>
-                    <th><label><input type="checkbox" v-model="checkAll"/></label></th>
-                    <th>#</th>
-                    <th v-for="key in columns"
-                        @click="sortBy(key)"
-                        :class="{ active: sortKey == key }">
-                        {{ key | title }}
-                        <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <filter-bar></filter-bar>
-                <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
-                         v-for="(entry, $index) in rowData" v-show="entry.visible" v-if="entry"></athlete>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="table-responsive">
+                <table v-if="roster" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><label><input type="checkbox" v-model="checkAll"/></label></th>
+                            <th>#</th>
+                            <th v-for="key in columns"
+                                @click="sortBy(key)"
+                                :class="{ active: sortKey == key }">
+                                {{ key | title }}
+                                <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <filter-bar></filter-bar>
+                        <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
+                                 v-for="(entry, $index) in rowData" v-show="entry.visible" v-if="entry"></athlete>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        <!--<registration-autofill></registration-autofill>-->
-        <!--<level-autofill></level-autofill>-->
+        <div class="row">
+            <registration-autofill></registration-autofill>
+        </div>
+        <div class="row">
+            <level-autofill></level-autofill>
+        </div>
     </div>
 </template>
 
@@ -132,5 +140,14 @@
 
     .column-controls .fa-sort {
         opacity: 0.4;
+    }
+
+    .container-full {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    th, td {
+        min-width: 0;
     }
 </style>

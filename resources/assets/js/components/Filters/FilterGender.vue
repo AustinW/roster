@@ -2,8 +2,8 @@
     <td>
         <select v-model="genderFilter" class="form-control" v-on:change="addFilter">
             <option value="">All</option>
-            <option value="f">Female</option>
-            <option value="m">Male</option>
+            <option value="f">F</option>
+            <option value="m">M</option>
         </select>
     </td>
 </template>

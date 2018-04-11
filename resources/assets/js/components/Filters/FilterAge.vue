@@ -1,8 +1,14 @@
 <template>
     <td>
-        <input v-model="minAge" class="form-control" type="text" v-on:keyup="addFilter">
-        to
-        <input v-model="maxAge" class="form-control" type="text" v-on:keyup="addFilter">
+        <div class="form-inline">
+            <div class="form-group">
+                <input v-model="minAge" class="form-control" type="text" v-on:keyup="addFilter">
+                to
+                <input v-model="maxAge" class="form-control" type="text" v-on:keyup="addFilter">
+            </div>
+
+        </div>
+
     </td>
 </template>
 
@@ -48,7 +54,7 @@
                 } else if (this.minAge) {
                   return athlete.competitive_age >= this.minAge
                 } else if (this.maxAge) {
-                  return athlete.competitive_age >= this.maxAge
+                  return athlete.competitive_age <= this.maxAge
                 }
 
                 return true
@@ -64,7 +70,14 @@
 </script>
 
 <style scoped>
+    td {
+    }
+
+    .form-inline {
+        margin: 0 auto;
+        position:relative;
+    }
     input {
-        width: 50px;
+        width: 50px !important;
     }
 </style>

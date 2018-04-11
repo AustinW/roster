@@ -1,6 +1,6 @@
 <template>
     <td>
-        <input v-model="firstNameFilter" class="form-control col-md-1" type="text" v-on:keyup="addFilter">
+        <input v-model="firstNameFilter" class="form-control" type="text" v-on:keyup="addFilter">
     </td>
 </template>
 
