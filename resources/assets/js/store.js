@@ -158,6 +158,41 @@ const store = new Vuex.Store({
         Vue.set(state.filters, key, reducer)
       }
     }
+  },
+
+  modules: {
+    AddAthleteForm: {
+      namespaced: true,
+
+      state: {
+        form: {
+          firstName: null,
+          lastName: null
+        }
+      },
+      getters: {
+        form(state) {
+          return state.form
+        },
+        name(state) {
+          if (state.firstName || state.lastName) {
+            return state.firstName || '' + ' ' + state.lastName || ''
+          }
+
+          return null
+        }
+      },
+      actions: {
+        updateFormField(context, payload) {
+          context.commit('setFormField', payload)
+        }
+      },
+      mutations: {
+        setFormField(state, { field, value }) {
+          state.form[field] = value
+        }
+      }
+    }
   }
 })
 

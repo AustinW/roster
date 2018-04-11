@@ -29,6 +29,7 @@ Vue.use(BootstrapVue)
 
 Vue.component('app', require('./components/App.vue'))
 Vue.component('roster', require('./components/Roster.vue'))
+Vue.component('navbar', require('./components/Navbar.vue'))
 Vue.component('input-text', require('./components/InputText.vue'))
 Vue.component('input-select', require('./components/InputSelect.vue'))
 Vue.component('input-date', require('./components/InputDate.vue'))

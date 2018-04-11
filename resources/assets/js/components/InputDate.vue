@@ -15,7 +15,6 @@
 </template>
 
 <script>
-  import flatpickr from 'vue-flatpickr-component'
   import 'flatpickr/dist/flatpickr.css'
   import moment from 'moment'
   import BackendMixin from './backend-mixin'

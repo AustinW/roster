@@ -1,42 +1,10 @@
 <template>
     <div>
-<<<<<<< HEAD
-        <div class="row">
-            <div class="table-responsive">
-                <table v-if="roster" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th><label><input type="checkbox" v-model="checkAll"/></label></th>
-                            <th>#</th>
-                            <th v-for="key in columns"
-                                @click="sortBy(key)"
-                                :class="{ active: sortKey == key }">
-                                {{ key | title }}
-                                <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <filter-bar></filter-bar>
-                        <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
-                                 v-for="(entry, $index) in rowData" v-show="entry.visible" v-if="entry"></athlete>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="row">
-            <registration-autofill></registration-autofill>
-        </div>
-        <div class="row">
-            <level-autofill></level-autofill>
-        </div>
-=======
-        <b-btn v-b-modal.addAthlete>Add Athlete</b-btn>
-        <a href="#" @click.prevent="importAthletes">Import Athletes</a>
-        <a href="#" @click.prevent="deleteAthletes">Delete Athletes</a>
-        <table v-if="roster" class="table table-striped">
-            <thead>
+        <navbar></navbar>
+        
+        <div class="table-responsive">
+            <table v-if="roster" class="table table-striped">
+                <thead>
                 <tr>
                     <th><label><input type="checkbox" v-model="checkAll"/></label></th>
                     <th>#</th>
@@ -47,19 +15,22 @@
                         <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
                     </th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <filter-bar></filter-bar>
                 <athlete :columns="columns" :data="entry" :index="$index" :key="entry.id"
                          v-for="(entry, $index) in rowData" v-show="entry.visible" v-if="entry"></athlete>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
 
-        <!--<registration-autofill></registration-autofill>-->
-        <!--<level-autofill></level-autofill>-->
+        <div class="row">
+            <registration-autofill></registration-autofill>
+        </div>
+        <div class="row">
+            <level-autofill></level-autofill>
+        </div>
 
-        <add-athlete-modal></add-athlete-modal>
->>>>>>> 4865b6d8bc1e591e3506ce37e8cc423d34a16bcf
     </div>
 </template>
 

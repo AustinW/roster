@@ -3,7 +3,7 @@
         <div class="form-inline">
             <div class="form-group">
                 <input v-model="minAge" class="form-control" type="text" v-on:keyup="addFilter">
-                to
+                <span class="mr-2 ml-2">to</span>
                 <input v-model="maxAge" class="form-control" type="text" v-on:keyup="addFilter">
             </div>
 
