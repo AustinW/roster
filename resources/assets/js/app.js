@@ -24,6 +24,9 @@ Vue.use(flatPickr)
 import Dropdown from 'hsy-vue-dropdown'
 Vue.use(Dropdown)
 
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
 Vue.component('app', require('./components/App.vue'))
 Vue.component('roster', require('./components/Roster.vue'))
 Vue.component('input-text', require('./components/InputText.vue'))
@@ -52,6 +55,10 @@ Vue.component('dmt-level-column', require('./components/Columns/DmtLevelColumn.v
 Vue.component('tum-level-column', require('./components/Columns/TumLevelColumn.vue'))
 Vue.component('notes-column', require('./components/Columns/NotesColumn.vue'))
 Vue.component('sync-partner-column', require('./components/Columns/SyncPartnerColumn.vue'))
+
+Vue.component('add-athlete-modal', require('./components/Modals/AddAthleteModal.vue'))
+Vue.component('add-athlete-form', require('./components/Forms/AddAthleteForm.vue'))
+
 
 const app = new Vue({
   el: '#app',

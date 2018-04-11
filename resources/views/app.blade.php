@@ -10,8 +10,13 @@
     <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<<<<<<< HEAD
     <!-- App -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+=======
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+>>>>>>> 4865b6d8bc1e591e3506ce37e8cc423d34a16bcf
 </head>
 <body>
 <div class="container-fluid" id='app'>
