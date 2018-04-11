@@ -175,8 +175,8 @@ const store = new Vuex.Store({
           return state.form
         },
         name(state) {
-          if (state.firstName || state.lastName) {
-            return state.firstName || '' + ' ' + state.lastName || ''
+          if (state.form.firstName || state.form.lastName) {
+            return (state.form.firstName || '') + ' ' + (state.form.lastName || '')
           }
 
           return null
@@ -189,7 +189,7 @@ const store = new Vuex.Store({
       },
       mutations: {
         setFormField(state, { field, value }) {
-          state.form[field] = value
+          Vue.set(state.form, field, value)
         }
       }
     }

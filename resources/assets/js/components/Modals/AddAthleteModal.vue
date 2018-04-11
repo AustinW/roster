@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import { createNamespacedHelpers } from 'vuex'
   export default {
     name: 'AddAthleteModal',
 
