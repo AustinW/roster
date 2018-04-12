@@ -77,6 +77,10 @@ const store = new Vuex.Store({
 
         return athlete
       })
+    },
+
+    allLevels(state) {
+      return state.fieldOptions.level
     }
   },
 
@@ -166,8 +170,14 @@ const store = new Vuex.Store({
 
       state: {
         form: {
-          firstName: null,
-          lastName: null
+          first_name: null,
+          last_name: null,
+          usag_id: null,
+          gender: null,
+          birthdate: null,
+          tra_level: null,
+          dmt_level: null,
+          tum_level: null,
         }
       },
       getters: {
@@ -175,8 +185,8 @@ const store = new Vuex.Store({
           return state.form
         },
         name(state) {
-          if (state.form.firstName || state.form.lastName) {
-            return (state.form.firstName || '') + ' ' + (state.form.lastName || '')
+          if (state.form.first_name || state.form.last_name) {
+            return (state.form.first_name || '') + ' ' + (state.form.last_name || '')
           }
 
           return null
