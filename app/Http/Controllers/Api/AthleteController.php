@@ -43,7 +43,13 @@ class AthleteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, Athlete::$rules);
+
+        $athlete = Athlete::make($request->all());
+        $athlete->active = true;
+        $athlete->save();
+
+        return $athlete;
     }
 
     /**

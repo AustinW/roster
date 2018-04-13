@@ -195,11 +195,19 @@ const store = new Vuex.Store({
       actions: {
         updateFormField(context, payload) {
           context.commit('setFormField', payload)
+        },
+
+        addAthlete(context) {
+          context.commit('submitForm')
         }
       },
       mutations: {
         setFormField(state, { field, value }) {
           Vue.set(state.form, field, value)
+        },
+
+        async submitForm(state) {
+          return await axios.post('/api/athletes', state.form)
         }
       }
     }

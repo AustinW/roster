@@ -18,5 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // get list of athletes
-Route::get('athletes','Api\AthleteController@index');
-Route::put('athletes/{athlete}','Api\AthleteController@update');
+Route::resource('athletes', 'Api\AthleteController');

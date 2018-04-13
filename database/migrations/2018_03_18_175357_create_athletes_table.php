@@ -24,8 +24,8 @@ class CreateAthletesTable extends Migration
             $table->string('tra_level')->nullable();
             $table->string('dmt_level')->nullable();
             $table->string('tum_level')->nullable();
-            $table->text('notes');
-            $table->string('sync_partner');
+            $table->text('notes')->nullable();
+            $table->string('sync_partner')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -1,5 +1,5 @@
 <template>
-    <b-form @submit="onSubmit" @reset="onReset">
+    <b-form>
         <b-form-row>
             <b-form-group label="First Name" label-for="first_name" class="col-md-6">
                 <b-form-input id="first_name" v-model="first_name" required placeholder="First Name"></b-form-input>
@@ -16,7 +16,7 @@
             </b-form-group>
 
             <b-form-group label="Gender" label-for="gender" class="col-md-6">
-                <b-form-select id="gender" v-model="gender" :options="{ 'f': 'Female', 'm': 'Male' }" required placeholder="Gender"></b-form-select>
+                <b-form-select id="gender" v-model="gender" :options="{ 'F': 'Female', 'M': 'Male' }" required placeholder="Gender"></b-form-select>
             </b-form-group>
         </b-form-row>
 
@@ -56,7 +56,7 @@
 
     methods: {
       onSubmit() {
-
+        console.log('hullo')
       },
 
       onReset() {
